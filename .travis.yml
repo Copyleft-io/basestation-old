@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "4.0.0"
+before_script:
+  - npm install grunt-cli -g
+  - npm install firebase-tools -g
+  - npm install firebase-bolt -g
+  - npm install bower -g
+  - npm install
+  - bower install
+after_script:
+  - grunt travis_build_and_deploy

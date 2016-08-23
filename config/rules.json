@@ -1,0 +1,66 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "links": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "requests": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "events": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "known-errors": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "incidents": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "problems": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "changes": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "releases": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "assets": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "applications": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "devices": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "environments": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "networks": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "services": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}

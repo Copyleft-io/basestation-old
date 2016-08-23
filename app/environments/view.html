@@ -1,0 +1,33 @@
+
+<form class="form-horizontal well" ng-init="getEnvironment()">
+  <fieldset>
+    <legend>View Environment</legend>
+    <div class="form-group">
+      <label for="inputId" class="col-lg-1 control-label">Id:</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ environment.$id }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Title:</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ environment.title }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description:</label>
+      <div class="list-group-item col-lg-10">
+        <p ta-bind ng-model="environment.description" ></p>
+      </div>
+    </div>
+
+
+    <br><hr>
+      <div class="form-group">
+        <div class="col-lg-10">
+          <a href="#/environments" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>
+          <a href="#/environments/edit/{{environment.$id}}" class="btn btn-sm btn-success"><i class="fa fa-pencil-square-o"> EDIT</i></a>
+        </div>
+      </div>
+  </fieldset>
+</form>

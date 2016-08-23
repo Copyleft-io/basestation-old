@@ -1,0 +1,147 @@
+
+<form class="form-horizontal" ng-init="getRequest()">
+  <fieldset>
+     <h2><i class="fa fa-ticket"></i> &nbsp;Request</h2>
+     <p class="lead">Title: <strong>{{request.title}}</strong></p>
+<br>
+    <uib-tabset>
+        <uib-tab>
+          <uib-tab-heading> <i class="fa fa-ticket"></i> Request </uib-tab-heading>
+<br>
+<div class="well">
+
+
+<div class="form-group">
+  <div class="col-lg-1">
+    <span>Request Id: </span>
+  </div>
+  <div class="col-lg-2">
+    <span>{{ request.$id }}</span>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-lg-1">
+    <span>Created By: </span>
+  </div>
+  <div class="col-lg-2">
+    <span>{{ request.createdBy }}</span>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-lg-1">
+    <span>Created At: </span>
+  </div>
+  <div class="col-lg-2">
+    <span>{{ request.createdAt }}</span>
+  </div>
+</div>
+
+</div><!-- /well -->
+
+</div>
+   <div class="panel panel-info">
+     <div class="panel-heading">
+    <h3 class="panel-title">SUMMARY</h3>
+  </div>
+<br>
+<div class="panel-body">
+  <div class="form-group">
+    <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+    <div class="list-group-item col-lg-10">
+      <p>{{ request.title }}</p>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="inputDeliveryBy" class="col-lg-1 control-label">Delivery By</label>
+      <div class="list-group-item col-lg-2">
+        <p>{{ request.deliveryBy }}</p>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="inputPriority" class="col-lg-1 control-label">Priority</label>
+      <div class="list-group-item col-lg-2">
+        <p>{{ request.priority }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputStatus" class="col-lg-1 control-label">Status</label>
+      <div class="list-group-item col-lg-2">
+        <p>{{ request.status }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAssignedTo" class="col-lg-1 control-label">Assigned To</label>
+      <div class="list-group-item col-lg-2">
+        <p>{{ request.assignedTo }}</p>
+      </div>
+    </div>
+  </div><!-- /panel-body -->
+  </div><!-- /panel -->
+    <br>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+     <h3 class="panel-title">DESCRIPTION</h3>
+   </div>
+  <br>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-10">
+        <p ta-bind ng-model="request.description" ></p>
+      </div>
+    </div>
+  </div><!-- /panel-body -->
+  </div><!-- /panel -->
+    <br>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+     <h3 class="panel-title">RESOLUTION</h3>
+   </div>
+  <br>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-10">
+        <p ta-bind ng-model="request.resolution" ></p>
+      </div>
+    </div>
+  </div><!-- /panel-body -->
+  </div><!-- /panel -->
+
+  </uib-tab>
+      <uib-tab>
+
+        <uib-tab-heading> <i class="fa fa-comment"></i> Comments </uib-tab-heading>
+        <br>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+         <h3 class="panel-title">COMMENTS</h3>
+       </div>
+
+   <div class="panel-body">
+        <div class="row">
+          <div class="list-group col-lg-12">
+            <div class="list-group-item" ng-repeat="comment in requestComments">
+              <label><a href="#/directory/user/{{comment.createdById}}">{{comment.createdBy}}</a> | {{comment.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</label>
+
+                  <div ta-bind ng-model="comment.text" ></div>
+              <br>
+            </div>
+        </div>
+      </div>
+    </div><!-- /panel-body -->
+    </div><!-- /panel -->
+
+    </uib-tab>
+      </uib-tabset>
+  <hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/requests" class="btn btn-sm btn-default"><i class="fa fa-lg fa-arrow-left"></i> &nbsp;BACK</a>
+        <a href="#/requests/edit/{{request.$id}}" class="btn btn-sm btn-success"><i class="fa fa-lg fa-pencil-square-o"> &nbsp;EDIT</i></a>
+      </div>
+    </div>
+
+  </fieldset>
+</form>

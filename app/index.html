@@ -1,0 +1,314 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>BaseStation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
+    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/sb-admin.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="basestation">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav ng-controller="NavbarCtrl" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">BaseStation</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+            <!--<li ng-hide"loggedin">
+              <form ng-hide"loggedin" class="navbar-form navbar-right" ng-submit="login()">
+                  <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.email" placeholder="Email">
+                  </div>&nbsp;&nbsp;
+                  <div class="form-group">
+                      <input type="password" class="form-control" ng-model="user.password" placeholder="Password">
+                  </div>&nbsp;&nbsp;
+                  <button type="submit" class="btn btn-default">Login</button>&nbsp;&nbsp;
+              </form>
+            </li>-->
+                <li ng-show="loggedin" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;{{userObj.email}}  <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#/profile"><i class="fa fa-fw fa-user"></i>Profile</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="#" ng-click="logout()"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li ng-hide="loggedin">
+                        <a href="#/login"><i class="fa fa-fw fa-sign-in"></i> Login</a>
+                    </li>
+                    <li ng-show="loggedin">
+                        <a href="#/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#/about"><i class="fa fa-fw fa-asterisk"></i> About</a>
+                    </li>
+                    <!-- PLACEHOLDERS
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li>
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#monitors"><i class="fa fa-fw fa-dashboard"></i> Monitors <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="monitors" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                  -->
+                  <li ng-show="loggedin">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#chef"><i class="fa fa-fw fa-cutlery"></i> Chef <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="chef" class="collapse">
+
+                          <!--<li>
+                              <a href="#/contacts"><i class="fa fa-book"></i> Contacts</a>
+                          </li>-->
+                          <li>
+                              <a href="#/chef/cookbooks" style="color: red;"><i class="fa fa-book"></i> Cookbooks</a>
+                          </li>
+                          <li>
+                              <a href="#/chef/databags" style="color: red;"><i class="fa fa-suitcase"></i> Databags</a>
+                          </li>
+                          <li>
+                              <a href="#/chef/environments" style="color: red;"><i class="fa fa-map-marker"></i> Environments</a>
+                          </li>
+                          <li>
+                              <a href="#/chef/nodes"><i class="fa fa-server"></i> Nodes</a>
+                          </li>
+                          <li>
+                              <a href="#/chef/roles" style="color: red;"><i class="fa fa-group"></i> Roles</a>
+                          </li>
+                          <!--<li>
+                              <a href="#/policies"><i class="fa fa-file-text-o"></i> Policies</a>
+                          </li>
+                          <li>
+                              <a href="#/procedures"><i class="fa fa-list"></i> Procedures</a>
+                          </li>
+                          <li>
+                              <a href="#/schedule"><i class="fa fa-calendar-o"></i> Schedule</a>
+                          </li>-->
+                      </ul>
+                  </li>
+                  <!-- Only show if user is authenticated -->
+                  <li ng-show="loggedin">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#people"><i class="fa fa-fw fa-group"></i> People <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="people" class="collapse">
+
+                          <!--<li>
+                              <a href="#/contacts"><i class="fa fa-book"></i> Contacts</a>
+                          </li>-->
+                          <li>
+                              <a href="#/directory"><i class="fa fa-book"></i> Directory</a>
+                          </li>
+                          <li>
+                              <a href="#/docs" style="color: red;"><i class="fa fa-newspaper-o"></i> Docs</a>
+                          </li>
+                          <li>
+                              <a href="#/links" style="color: red;"><i class="fa fa-link"></i> Links</a>
+                          </li>
+                          <!--<li>
+                              <a href="#/policies"><i class="fa fa-file-text-o"></i> Policies</a>
+                          </li>
+                          <li>
+                              <a href="#/procedures"><i class="fa fa-list"></i> Procedures</a>
+                          </li>
+                          <li>
+                              <a href="#/schedule"><i class="fa fa-calendar-o"></i> Schedule</a>
+                          </li>-->
+                      </ul>
+                  </li>
+                  <!-- Only show if user is authenticated -->
+                    <li ng-show="loggedin">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#process"><i class="fa fa-fw fa-gears"></i> Process <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="process" class="collapse">
+
+                            <li>
+                                <a href="#/requests"><i class="fa fa-ticket"></i>&nbsp; Requests</a>
+                            </li>
+                            <li>
+                                <a href="#/events" style="color: red;"><i class="fa fa-bell"></i>&nbsp; Events</a>
+                            </li>
+                            <li>
+                                <a href="#/known-errors"><i class="fa fa-exclamation-triangle"></i>&nbsp; Known Errors</a>
+                            </li>
+                            <li>
+                                <a href="#/incidents" style="color: red;"><i class="fa fa-fire"></i>&nbsp; Incidents</a>
+                            </li>
+                            <!--<li>
+                                <a href="#/problems"><i class="fa fa-exclamation-triangle">&nbsp; Problems</i></a>
+                            </li>-->
+                            <li>
+                                <a href="#/changes" style="color: red;"><i class="fa fa-file-code-o"></i>&nbsp; Changes</a>
+                            </li>
+                            <li>
+                                <a href="#/releases" style="color: red;"><i class="fa fa-archive"></i>&nbsp; Releases</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Only show if user is authenticated -->
+                    <li ng-show="loggedin">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#technology"><i class="fa fa-fw fa-server"></i> Technology <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="technology" class="collapse">
+                          <!--<li><a href="#/accounts"><i class="fa fa-list-alt">&nbsp; Accounts</i></a></li>-->
+                          <li><a href="#/applications" style="color: red;"><i class="fa fa-cube"></i>&nbsp; Applications</a></li>
+                          <li><a href="#/assets"><i class="fa fa-laptop"></i>&nbsp; Assets</a></li>
+                          <!--<li><a href="#/capabilities"><i class="fa fa-briefcase">&nbsp; Capabilities</i></a></li>-->
+                          <li><a href="#/devices"><i class="fa fa-server"></i>&nbsp; Devices</a></li>
+                          <li><a href="#/environments"><i class="fa fa-map-marker"></i>&nbsp; Environments</a></li>
+                          <!--<li><a href="#/instances"><i class="fa fa-cubes">&nbsp; Instances</i></a></li>-->
+                          <!--<li><a href="#/monitors"><i class="fa fa-heartbeat">&nbsp; Monitors</i></a></li>-->
+                          <li><a href="#/networks" style="color: red;"><i class="fa fa-sitemap"></i>&nbsp; Networks</a></li>
+                          <!--<li><a href="#/permissions"><i class="fa fa-lock">&nbsp; Permissions</i></a></li>-->
+                          <!--<li><a href="#/profiles"><i class="fa fa-users">&nbsp; Profiles</i></a></li>-->
+                          <!--<li><a href="#/roles"><i class="fa fa-street-view">&nbsp; Roles</i></a></li>-->
+                          <li><a href="#/security" style="color: red;"><i class="fa fa-user-secret"></i>&nbsp; Security</a></li>
+                        </ul>
+                    </li>
+                    <li ng-show="loggedin">
+                        <a href="#/settings" style="color: red;"><i class="fa fa-wrench"></i>&nbsp; Settings</a>
+                        <!--<a href="javascript:;" data-toggle="collapse" data-target="#settings"><i class="fa fa-fw fa-wrench"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="settings" class="collapse">
+                          <li><a href="#/devices"><i class="fa fa-server">&nbsp; Devices</i></a></li>
+                          <li><a href="#/environments"><i class="fa fa-map-marker">&nbsp; Environments</i></a></li>
+                          <li><a href="#/networks"><i class="fa fa-sitemap">&nbsp; Networks</i></a></li>
+                          <li><a href="#/services"><i class="fa fa-gear">&nbsp; Services</i></a></li>
+                        </ul>
+                      -->
+                    </li>
+                    <li>
+                        <a href="#/help" style="color: red;"><i class="fa fa-fw fa-question"></i>&nbsp; Help</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+              <ui-view></ui-view> <!-- main view -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+    <script src="bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+    <script src="bower_components/elastic.js/dist/elastic.js"></script>
+    <script src="bower_components/elasticui/dist/elasticui.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="app.js"></script>
+    <script src="settings/settings.service.js"></script>
+    <script src="settings/settings.controller.js"></script>
+    <script src="auth/auth.service.js"></script>
+    <script src="auth/auth.controller.js"></script>
+    <script src="users/users.service.js"></script>
+    <script src="users/user.service.js"></script>
+    <script src="users/profile.controller.js"></script>
+    <script src="teams/teams.service.js"></script>
+    <script src="teams/teams.controller.js"></script>
+    <script src="navbar/navbar.controller.js"></script>
+    <script src="elasticsearch/elastic.service.js"></script>
+    <script src="dashboard/dashboard.controller.js"></script>
+    <script src="dashboard/tagged.controller.js"></script>
+    <script src="directory/directory.controller.js"></script>
+    <script src="requests/requests.service.js"></script>
+    <script src="requests/comments.service.js"></script>
+    <script src="requests/requests.controller.js"></script>
+    <script src="environments/environments.service.js"></script>
+    <script src="environments/environments.controller.js"></script>
+    <script src="devices/devices.service.js"></script>
+    <script src="devices/comments.service.js"></script>
+    <script src="devices/devices.controller.js"></script>
+    <script src="known-errors/known-errors.service.js"></script>
+    <script src="known-errors/comments.service.js"></script>
+    <script src="known-errors/known-errors.controller.js"></script>
+    <script src="assets/assets.service.js"></script>
+    <script src="assets/comments.service.js"></script>
+    <script src="assets/assets.controller.js"></script>
+    <script src="modules/chef/module.js"></script>
+    <!-- endbuild -->
+
+</body>
+</html>

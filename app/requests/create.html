@@ -1,0 +1,82 @@
+
+<form class="form-horizontal well" ng-submit="create(request)" >
+  <fieldset>
+    <legend>Create Request</legend>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTitle" placeholder="title" ng-model="request.title" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDate" class="col-lg-1 control-label">Delivery By (mm/dd/yyyy)</label>
+        <div class="col-lg-10" id='requestDeliveryBy'>
+            <input type='text' class="form-control" ng-model="request.deliveryBy" />
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="selectType" class="col-lg-1 control-label">Priority</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectType" ng-model="request.priority">
+          <option value="">Select Priority</option>
+          <option>Critical</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectType" class="col-lg-1 control-label">Status</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectType" ng-model="request.status">
+          <option value="">Select Status</option>
+          <option>Not Started</option>
+          <option>In Progress</option>
+          <option>Pending Feedback</option>
+          <option>On Hold</option>
+          <option>Resolved</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAssignedTo" class="col-lg-1 control-label">Assigned To</label>
+      <div class="col-lg-10">
+        <select id="inputAssignedTo" class="form-control" placeholder="assigned to" ng-model="request.assignedTo">
+          <option value="">Select Assignment</option>
+
+          <option value="unassigned" >Unassigned</option>
+
+         <optgroup label="Teams">
+          <option value="team 1" >Team 1 (todo)</option>
+          <option value="team 2" >Team 2 (todo)</option>
+          <option value="team 3" >Team 3 (todo)</option>
+        <!--<option ng-repeat="team in teams"
+          value="{{team.name}}">
+            {{team.name}}
+        </option>-->
+          </optgroup>
+          <optgroup label="Users">
+          <option ng-repeat="user in users"
+            value="{{user.email}}">
+              {{user.email}}
+          </option>
+        </optgroup>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description</label>
+      <div class="col-lg-10">
+        <div text-angular ng-model="request.description" ></div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-1">
+        <a href="#/requests" type="reset" class="btn btn-sm btn-default"><i class="fa fa-lg fa-times"></i> &nbsp;CANCEL</a>
+        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-lg fa-floppy-o"></i> &nbsp;SAVE</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

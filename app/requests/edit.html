@@ -1,0 +1,188 @@
+
+<form class="form-horizontal" ng-submit="update()" ng-init="getRequest()">
+<fieldset>
+<legend>Edit Request</legend>
+  <br>
+  <uib-tabset>
+    <uib-tab>
+      <uib-tab-heading> <i class="fa fa-ticket"></i> Request </uib-tab-heading>
+      <br>
+      <div class="well">
+        <div class="form-group">
+          <div class="col-lg-1">
+            <span>Request Id: </span>
+          </div>
+          <div class="col-lg-2">
+            <span>{{ request.$id }}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-1">
+            <span>Created By: </span>
+          </div>
+          <div class="col-lg-2">
+            <span>{{ request.createdBy }}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-1">
+            <span>Created At: </span>
+          </div>
+          <div class="col-lg-2">
+            <span>{{ request.createdAt }}</span>
+          </div>
+        </div>
+    </div><!-- /well -->
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+     <h3 class="panel-title">SUMMARY</h3>
+   </div>
+ <br>
+        <div class="form-group">
+          <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputTitle" placeholder="title" ng-model="request.title" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputDate" class="col-lg-1 control-label">Delivery By</label>
+            <div class="col-lg-2" id='requestDeliveryBy'>
+                <input type='text' class="form-control" placeholder="mm/dd/yyyy hh:mm am/pm" ng-model="request.deliveryBy" />
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="selectType" class="col-lg-1 control-label">Priority</label>
+          <div class="col-lg-2">
+            <select class="form-control" id="selectType" ng-model="request.priority">
+              <option value="">Select Priority</option>
+              <option>P1 Critical</option>
+              <option>P2 High</option>
+              <option>P3 Medium</option>
+              <option>P4 Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="selectType" class="col-lg-1 control-label">Status</label>
+          <div class="col-lg-2">
+            <select class="form-control" id="selectType" ng-model="request.status">
+              <option value="">Select Status</option>
+              <option>Not Started</option>
+              <option>In Progress</option>
+              <option>Pending Feedback</option>
+              <option>On Hold</option>
+              <option>Resolved</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAssignedTo" class="col-lg-1 control-label">Assigned To</label>
+          <div class="col-lg-2">
+            <select id="inputAssignedTo" class="form-control" placeholder="assigned to" ng-model="request.assignedTo">
+              <option value="" label="Select User">Select User</option>
+
+              <option value="unassigned" >Unassigned</option>
+
+            <optgroup label="Teams">
+              <option value="team 1" >Team 1 (todo)</option>
+              <option value="team 2" >Team 2 (todo)</option>
+              <option value="team 3" >Team 3 (todo)</option>
+            <!--<option ng-repeat="team in teams"
+              value="{{team.name}}">
+                {{team.name}}
+            </option>-->
+          </optgroup>
+              <optgroup label="Users">
+              <option ng-repeat="user in users"
+                value="{{user.email}}">
+                  {{user.email}}
+              </option>
+            </optgroup>
+            </select>
+          </div>
+        </div>
+      </div><!-- /panel-body -->
+      </div><!-- /panel -->
+        <br>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+         <h3 class="panel-title">DESCRIPTION</h3>
+       </div>
+      <br>
+        <div class="form-group">
+          <div class="col-lg-12">
+            <div text-angular ng-model="request.description" ></div>
+          </div>
+        </div>
+      </div><!-- /panel-body -->
+      </div><!-- /panel -->
+        <br>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+         <h3 class="panel-title">RESOLUTION</h3>
+       </div>
+      <br>
+        <div class="form-group">
+          <div class="col-lg-12">
+            <div text-angular ng-model="request.resolution" ></div>
+          </div>
+        </div>
+      </div><!-- /panel-body -->
+      </div><!-- /panel -->
+
+
+      </uib-tab>
+      <uib-tab>
+          <uib-tab-heading> <i class="fa fa-comment"></i> Comments </uib-tab-heading>
+          <br>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+           <h3 class="panel-title">COMMENTS</h3>
+         </div>
+
+     <div class="panel-body">
+        <div class="row">
+          <div class="list-group">
+            <div class="list-group-item" ng-repeat="comment in requestComments">
+              <label><a href="#/directory/user/{{comment.createdById}}">{{comment.createdBy}}</a> | {{comment.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</label>
+
+                  <div ta-bind ng-model="comment.text" ></div>
+              <br>
+            </div>
+        </div>
+      </div>
+    </div><!-- /panel-body -->
+    </div><!-- /panel -->
+    <br>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+     <h3 class="panel-title">NEW COMMENT</h3>
+    </div>
+      <div class="row">
+
+            <div class="panel-body">
+              <div class="form-group">
+                <!--<label for="inputMessage" class="control-label">Message</label>-->
+
+                <div class="col-lg-12">
+                  <div text-angular ng-model="newRequestComment.text" ></div>
+                </div>
+              </div>
+              <a href="" ng-click='addComment(newRequestComment)' class="btn btn-sm btn-success"><i class="fa fa-plus"> </i> ADD COMMENT</a>
+</div>
+</div><!-- /panel-body -->
+</div><!-- /panel -->
+          </uib-tab>
+  </uib-tabset>
+
+  <hr>
+  <div class="form-group">
+    <div class="col-lg-10">
+      <a href="#/requests/view/{{request.$id}}" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>
+      <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-lg fa-floppy-o"></i> &nbsp;SAVE</button>
+      <a href="#/requests" ng-click='delete(request)' class="btn btn-sm btn-warning"><i class="fa fa-lg fa-trash-o"> </i>&nbsp; DELETE</a>
+    </div>
+  </div>
+    </fieldset>
+</form>

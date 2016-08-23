@@ -1,0 +1,23 @@
+<h3><i class="fa fa-group"></i> &nbsp; Teams</h3>
+
+<br/>
+<button ng-click="tableTeams.filter({})" class="btn btn-sm pull-right" style="padding:10px;">Clear Filter</button>
+    <table ng-table="tableTeams" class="table table-striped table-bordered" show-filter="true">
+
+        <tr ng-repeat="team in $data">
+            <td data-title="'Name'" class="align-left" filter="{ 'name': 'text' }">
+                {{team.name}}
+            </td>
+            <td data-title="'Description'" class="align-left" filter="{ 'description': 'text' }">
+                {{team.description}}
+            </td>
+            <td>
+              <a href="#/teams/view/{{team.$id}}" class="btn btn-xs btn-default"><i class="fa fa-search"> </i></a>
+              <a href="#/teams/edit/{{team.$id}}" class="btn btn-xs btn-success"><i class="fa fa-pencil-square-o"> </i></a>
+            </td>
+        </tr>
+
+    </table>
+    <a href="#/teams/create" class="btn btn-sm btn-primary pull-left" style="padding:10px;"><i class="fa fa-lg fa-plus"></i> &nbsp;CREATE TEAM</a>
+
+</div>

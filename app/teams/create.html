@@ -1,0 +1,47 @@
+
+<form class="form-horizontal well" ng-submit="create(team)" >
+  <fieldset>
+    <legend>Create Team</legend>
+    <div class="form-group">
+      <label for="inputName" class="col-lg-1 control-label">Name</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputName" placeholder="name" ng-model="team.name" required="true">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectType" class="col-lg-1 control-label">Status</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectType" ng-model="team.status">
+          <option value="">Select Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTags" class="col-lg-1 control-label">Tags</label>
+      <div class="col-lg-10">
+        <tags-input id="inputTags" ng-model="team.tags"></tags-input>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLocation" class="col-lg-1 control-label">Location</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputLocation" placeholder="location" ng-model="team.location" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description</label>
+      <div class="col-lg-10">
+        <div text-angular ng-model="team.description" ></div>
+      </div>
+    </div>
+    <br><hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/devices" type="reset" class="btn btn-sm btn-default">Cancel</a>
+        <button type="submit" class="btn btn-sm btn-success">Save</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

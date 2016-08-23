@@ -1,0 +1,48 @@
+body {
+  padding-top: 75px;
+  padding-bottom: 50px;
+}
+
+.user-pic {
+  display: inline-block;
+  vertical-align: top;
+  width:44px;
+  height:44px;
+  border-radius:4px;
+}
+
+.message {
+  display: inline-block;
+}
+.channel-panel {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    overflow-y: scroll;
+}
+.message-panel {
+    position: absolute;
+    top: 75px;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    min-height: 475px;
+    overflow-y: scroll;
+}
+.add-message-form {
+    position: absolute;
+    top: 550px;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+}
+.ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:20px 0;
+}

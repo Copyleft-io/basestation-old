@@ -1,0 +1,30 @@
+
+<form class="form-horizontal well" ng-submit="update()" ng-init="getEnvironment()">
+  <fieldset>
+    <legend>Edit Environment</legend>
+    <div class="form-group">
+      <label for="inputId" class="col-lg-2 control-label">Id:</label>
+      <div class="col-lg-10">
+      <input placeholder="id" type="text" ng-model="environment.$id" readonly>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-2 control-label">Title:</label>
+      <div class="col-lg-10">
+        <input placeholder="title" type="text" ng-model="environment.title"><br/>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="textareaDescription" class="col-lg-2 control-label">Description:</label>
+      <div class="col-lg-10">
+        <textarea placeholder="description" rows="3" type="text" ng-model="environment.description"></textarea><br/>
+      </div>
+  </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <a href="#/environments/view/{{environment.$id}}" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>
+        <button type="submit" class="btn btn-sm btn-primary">&nbsp; SAVE</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,28 @@
+<div ng-init="getDevice()">
+  <h3><i class="fa fa-heartbeat"></i> Device Health</h3>
+  <br/>
+  <p class="lead">{{ device.title }}</p>
+  <h5>Memory</h5>
+  <p><i>example only... not live data... yet ;)</i></p>
+  <div class="ct-chart"></div>
+
+</div>
+
+
+<script type="text/javascript">
+new Chartist.Bar('.ct-chart', {
+  labels: ['Total Memory', 'Free Memory'],
+  series: [
+    [1000, 500 ]
+  ]
+}, {
+  stackBars: true
+}).on('draw', function(data) {
+  if(data.type === 'bar') {
+    data.element.attr({
+      style: 'stroke-width: 30px'
+    });
+  }
+});
+
+</script>

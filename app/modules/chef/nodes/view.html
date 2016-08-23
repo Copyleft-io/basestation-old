@@ -1,0 +1,103 @@
+
+<form class="form-horizontal well" ng-init="getNode()">
+  <fieldset>
+    <h2><i class="fa fa-server"></i> &nbsp;Node</h2>
+    <p class="lead">Name: <strong>{{chef_node.name}}</strong></p>
+    <br>
+    <uib-tabset>
+        <uib-tab>
+          <uib-tab-heading> <i class="fa fa-server"></i> Node </uib-tab-heading>
+          <br>
+          <div class="form-group">
+            <label for="inputId" class="col-lg-1 control-label">Id</label>
+            <div class="list-group-item col-lg-10">
+              <p>{{ chef_node.$id }}</p>
+            </div>
+          </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Name</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.name}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Hostname</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.hostname}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">FQDN</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.fqdn}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Status</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.status}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEnvironment" class="col-lg-1 control-label">Environment</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.environment}}</p>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group">
+      <label for="inputOS" class="col-lg-1 control-label">OS</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.os}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputOS" class="col-lg-1 control-label">RAM</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.memory}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCPU" class="col-lg-1 control-label">MAC Address</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.mac_address}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputRAM" class="col-lg-1 control-label">Private IP</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.private_ip}}</p>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group">
+      <label for="inputDISK" class="col-lg-1 control-label">Run List</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{chef_node.run_list}}</p>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab>
+    <uib-tab-heading> <i class="fa fa-comment"></i> Comments </uib-tab-heading>
+    <br>
+    <div class="row">
+      <div class="list-group">
+        <div class="list-group-item" ng-repeat="comment in deviceComments">
+          <label><a href="#/directory/user/{{comment.createdById}}">{{comment.createdBy}}</a> | {{comment.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</label>
+
+              <div ta-bind ng-model="comment.text" ></div>
+          <br>
+        </div>
+    </div>
+  </div>
+</uib-tab>
+  </uib-tabset>
+  <br><hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/chef/nodes" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>
+        <!-- <a href="#/devices/edit/{{device.$id}}" class="btn btn-sm btn-success"><i class="fa fa-lg fa-pencil-square-o"></i>&nbsp;EDIT</a> -->
+      </div>
+    </div>
+  </fieldset>
+</form>

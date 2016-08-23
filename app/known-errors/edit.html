@@ -1,0 +1,95 @@
+
+<form class="form-horizontal well" ng-submit="update()" ng-init="getKnownError()">
+  <fieldset>
+    <legend>Edit Known Error</legend>
+    <uib-tabset>
+        <uib-tab>
+          <uib-tab-heading><i class="fa fa-exclamation-triangle"></i> Known Error </uib-tab-heading>
+          <br>
+    <div class="form-group">
+      <label for="inputId" class="col-lg-1 control-label">Id</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ knownError.$id }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCreatedBy" class="col-lg-1 control-label">Created By</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ knownError.createdBy }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCreatedAt" class="col-lg-1 control-label">Created At</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ knownError.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTitle" placeholder="title" ng-model="knownError.title" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputSource" class="col-lg-1 control-label">Source</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputSource" placeholder="(e.g. catalina.out, pentaho.log, tomcat.log)" ng-model="knownError.source" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTags" class="col-lg-1 control-label">Tags</label>
+      <div class="col-lg-10">
+        <tags-input id="inputTags" ng-model="knownError.tags"></tags-input>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description</label>
+      <div class="col-lg-10">
+        <div text-angular ng-model="knownError.description" ></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputResolution" class="col-lg-1 control-label">Resolution</label>
+      <div class="col-lg-10">
+        <div text-angular ng-model="knownError.resolution" ></div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab>
+    <uib-tab-heading> <i class="fa fa-comment"></i> Comments </uib-tab-heading>
+    <br>
+    <div class="row">
+      <div class="list-group">
+        <div class="list-group-item" ng-repeat="comment in knownErrorComments">
+          <label><a href="#/directory/user/{{comment.createdById}}">{{comment.createdBy}}</a> | {{comment.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</label>
+
+              <div ta-bind ng-model="comment.text" ></div>
+          <br>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <br><hr>
+<p class="lead">New Comment</p>
+          <div class="form-group">
+            <!--<label for="inputMessage" class="control-label">Message</label>-->
+
+            <div class="col-lg-10">
+              <div text-angular ng-model="newKnownErrorComment.text" ></div>
+            </div>
+          </div>
+          <a href="" ng-click='addComment(newKnownErrorComment)' class="btn btn-sm btn-success"><i class="fa fa-plus"> </i> ADD COMMENT</a>
+</div>
+</uib-tab>
+  </uib-tabset>
+
+  <hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/known-errors/view/{{knownError.$id}}" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>&nbsp;
+        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-lg fa-floppy-o"></i> &nbsp;SAVE</button>&nbsp;
+        <a href="/known-errors" ng-click='delete(knownError)' class="btn btn-sm btn-warning"><i class="fa fa-lg fa-trash-o"> </i>&nbsp;DELETE</a>
+      </div>
+    </div>
+  </fieldset>
+</form>

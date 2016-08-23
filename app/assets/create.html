@@ -1,0 +1,94 @@
+
+<form class="form-horizontal well" ng-submit="create(asset)" >
+  <fieldset>
+    <legend>Create Asset</legend>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTitle" placeholder="title" ng-model="asset.title" required="true">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectType" class="col-lg-1 control-label">Status</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectType" ng-model="asset.status">
+          <option value="">Select Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTags" class="col-lg-1 control-label">Tags</label>
+      <div class="col-lg-10">
+        <tags-input id="inputTags" ng-model="asset.tags"></tags-input>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectUidType" class="col-lg-1 control-label">UID Type</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectUidType" ng-model="asset.uidType">
+          <option>License Key</option>
+          <option>Serial Number</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputUid" class="col-lg-1 control-label">UID</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputUid" placeholder="unique identifier" ng-model="asset.uid" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectType" class="col-lg-1 control-label">Type</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectType" ng-model="asset.type">
+          <option>Badge</option>
+          <option>Desktop</option>
+          <option>Docking Station</option>
+          <option>Keyboard</option>
+          <option>Laptop</option>
+          <option>License</option>
+          <option>Monitor</option>
+          <option>Monitor Stand</option>
+          <option>Phone</option>
+          <option>Tablet</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAssignedTo" class="col-lg-1 control-label">Assigned To</label>
+      <div class="col-lg-10">
+        <!--<input type="text" class="form-control" id="inputAssignedTo" placeholder="assigned to" ng-model="asset.assignedTo" >-->
+        <select id="inputAssignedTo" class="form-control" placeholder="assigned to" ng-model="asset.assignedTo">
+          <option value="" label="Select User">Select User</option>
+          <option value="inventory" label="inventory">inventory</option>
+          <option ng-repeat="user in users"
+            value="{{user.email}}">
+              {{user.email}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLocation" class="col-lg-1 control-label">Location</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputLocation" placeholder="location" ng-model="asset.location" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description</label>
+      <div class="col-lg-10">
+        <div text-angular ng-model="asset.description" ></div>
+      </div>
+    </div>
+    <br><hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/assets" type="reset" class="btn btn-sm btn-default">CANCEL</a>
+        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-lg fa-floppy-o"></i> &nbsp;SAVE</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

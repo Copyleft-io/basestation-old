@@ -1,0 +1,311 @@
+<div ng-controller="DashboardCtrl" eui-index="'basestation'"><!-- ACTION: change to index name -->
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Dashboard <small>(Example)</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Dashboard
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-fire fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{totalIncidents}}</div>
+                                        <div>Incidents</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#/incidents">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-exclamation-triangle fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{totalProblems}}</div>
+                                        <div>Problems</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#/problems">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-file-code-o fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{totalChanges}}</div>
+                                        <div>Changes</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#/changes">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-ticket fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{totalRequests}}</div>
+                                        <div>Requests</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#/requests">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-area-chart"></div>
+                                Put Really Cool Charts Here
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+   <div class="container-fluid">
+       <h2><i class="fa fa-lg fa-search"></i> &nbsp;Search</h2>
+       <hr><br>
+       <div class="row">
+           <div class="col-lg-3">
+               <span class="lead"> Search by Tag</span>&nbsp; <eui-searchbox field="'tags'"></eui-searchbox> <br><br><!-- ACTION: change to field to search on -->
+               <span class="lead"> Search by Title</span>&nbsp; <eui-searchbox field="'title'"></eui-searchbox><br><br>
+               <span class="lead">Results Per Page</span>&nbsp;
+               <select ng-model="indexVM.pageSize">
+                   <option ng-repeat="item in [10, 20, 50, 100]">{{item}}</option>
+               </select>
+           </div>
+           <div class="col-lg-2">
+               <span class="lead"> Filter by Type</span>
+               <eui-singleselect field="'_type'" size="5">
+               </eui-singleselect>
+           </div>
+         </div>
+         <br><hr>
+         <div class="row">
+           <div class="col-lg-10">
+
+               <h1>Results</h1>
+               <table class="table">
+                   <thead>
+                     <!--<td class="lead">Id</td>-->
+                     <td class="lead">Type</td>
+                     <td class="lead">Title</td>
+                     <td class="lead">Tags</td>
+
+                   </thead>
+                   <tr ng-repeat="doc in indexVM.results.hits.hits">
+                     <td>{{doc._type}} </td>
+                     <td><a href="#/{{doc._type}}s/view/{{doc._id}}"> {{doc._source.title}} </a> </td>
+                     <td>
+                         <div ng-repeat="(id, tag) in doc._source.tags" class="tags tag-box">
+                            <a href="#/tagged/{{tag.text}}" title="show items tagged '{{tag.text}}'" rel="tag">{{tag.text}}</a>
+                         </div>
+                     </td>
+                   </tr>
+             </table>
+               <eui-simple-paging></eui-simple-paging>
+           </div>
+       </div>
+   </div>
+
+                <!-- /.row -->
+<!--
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-donut-chart"></div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">just now</span>
+                                        <i class="fa fa-fw fa-calendar"></i> Calendar updated
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">4 minutes ago</span>
+                                        <i class="fa fa-fw fa-comment"></i> Commented on a post
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">23 minutes ago</span>
+                                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">46 minutes ago</span>
+                                        <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">1 hour ago</span>
+                                        <i class="fa fa-fw fa-user"></i> A new user has been added
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">2 hours ago</span>
+                                        <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">yesterday</span>
+                                        <i class="fa fa-fw fa-globe"></i> Saved the world
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">two days ago</span>
+                                        <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
+                                    </a>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Order #</th>
+                                                <th>Order Date</th>
+                                                <th>Order Time</th>
+                                                <th>Amount (USD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>3326</td>
+                                                <td>10/21/2013</td>
+                                                <td>3:29 PM</td>
+                                                <td>$321.33</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3325</td>
+                                                <td>10/21/2013</td>
+                                                <td>3:20 PM</td>
+                                                <td>$234.34</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3324</td>
+                                                <td>10/21/2013</td>
+                                                <td>3:03 PM</td>
+                                                <td>$724.17</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3323</td>
+                                                <td>10/21/2013</td>
+                                                <td>3:00 PM</td>
+                                                <td>$23.71</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3322</td>
+                                                <td>10/21/2013</td>
+                                                <td>2:49 PM</td>
+                                                <td>$8345.23</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3321</td>
+                                                <td>10/21/2013</td>
+                                                <td>2:23 PM</td>
+                                                <td>$245.12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3320</td>
+                                                <td>10/21/2013</td>
+                                                <td>2:15 PM</td>
+                                                <td>$5663.54</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3319</td>
+                                                <td>10/21/2013</td>
+                                                <td>2:13 PM</td>
+                                                <td>$943.45</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              -->
+                <!-- /.row -->
+</div>

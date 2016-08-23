@@ -1,0 +1,132 @@
+
+<form class="form-horizontal well" ng-init="getDevice()">
+  <fieldset>
+    <h2><i class="fa fa-server"></i> &nbsp;Device</h2>
+    <p class="lead">Title: <strong>{{device.title}}</strong></p>
+    <br>
+    <uib-tabset>
+        <uib-tab>
+          <uib-tab-heading> <i class="fa fa-server"></i> Device </uib-tab-heading>
+          <br>
+          <div class="form-group">
+            <label for="inputId" class="col-lg-1 control-label">Id</label>
+            <div class="list-group-item col-lg-10">
+              <p>{{ device.$id }}</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputCreatedBy" class="col-lg-1 control-label">Created By</label>
+            <div class="list-group-item col-lg-10">
+              <p>{{ device.createdBy }}</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputCreatedAt" class="col-lg-1 control-label">Created At</label>
+            <div class="list-group-item col-lg-10">
+              <p>{{ device.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</p>
+            </div>
+          </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-1 control-label">Title</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.title}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputStatus" class="col-lg-1 control-label">Status</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{ device.status }}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTags" class="col-lg-1 control-label">Tags</label>
+      <div class="list-group-item col-lg-10">
+        <tags-input id="inputTags" disabled="true" ng-model="device.tags"></tags-input>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputType" class="col-lg-1 control-label">Type</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.type}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEnvironment" class="col-lg-1 control-label">Environment</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.environment}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLocation" class="col-lg-1 control-label">Location</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.location}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-lg-1 control-label">Description</label>
+      <div class="list-group-item col-lg-10">
+        <p ta-bind ng-model="device.description" ></p>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group">
+      <label for="inputOS" class="col-lg-1 control-label">OS</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.os}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCPU" class="col-lg-1 control-label">CPU (Cores)</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.cpu}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputRAM" class="col-lg-1 control-label">RAM (GB)</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.ram}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDISK" class="col-lg-1 control-label">DISK (GB)</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.disk}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPublicIp" class="col-lg-1 control-label">Public IP</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.public_ip}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPrivateIp" class="col-lg-1 control-label">Private IP</label>
+      <div class="list-group-item col-lg-10">
+        <p>{{device.private_ip}}</p>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab>
+    <uib-tab-heading> <i class="fa fa-comment"></i> Comments </uib-tab-heading>
+    <br>
+    <div class="row">
+      <div class="list-group">
+        <div class="list-group-item" ng-repeat="comment in deviceComments">
+          <label><a href="#/directory/user/{{comment.createdById}}">{{comment.createdBy}}</a> | {{comment.createdAt | date:"EEE MMM d yyyy HH:mm:ss 'GMT'Z"}}</label>
+
+              <div ta-bind ng-model="comment.text" ></div>
+          <br>
+        </div>
+    </div>
+  </div>
+</uib-tab>
+  </uib-tabset>
+  <br><hr>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <a href="#/devices" class="btn btn-sm btn-default"><i class="fa fa-lg fa-chevron-left"></i> &nbsp;BACK</a>
+        <a href="#/devices/edit/{{device.$id}}" class="btn btn-sm btn-success"><i class="fa fa-lg fa-pencil-square-o"></i>&nbsp;EDIT</a>
+      </div>
+    </div>
+  </fieldset>
+</form>

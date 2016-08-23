@@ -1,0 +1,83 @@
+<div ng-init="getDevice()">
+
+  <h3><i class="fa fa-puzzle-piece"></i> Device Configuration</h3>
+  <br/><br/>
+  <h4>Base Configuration</h4>
+  <table class="table table-striped">
+    <tr>
+      <td><b>Title:</b> &nbsp;</td>
+      <td>{{ device.title }}</td>
+    </tr>
+    <tr>
+      <td><b>Type:</b> &nbsp;</td>
+      <td>{{ device.type }}</td>
+    </tr>
+    <tr>
+      <td><b>Environment:</b> &nbsp;</td>
+      <td>{{ device.environment }}</td>
+    </tr>
+    <tr>
+      <td><b>Location:</b> &nbsp;</td>
+      <td>{{ device.release }}</td>
+    </tr>
+    <tr>
+      <td><b>OS:</b> &nbsp;</td>
+      <td>{{ device.os }}</td>
+    </tr>
+    <tr>
+      <td><b>CPU:</b> &nbsp;</td>
+      <td>{{ device.cpu }}</td>
+    </tr>
+    <tr>
+      <td><b>RAM:</b> &nbsp;</td>
+      <td>{{ device.ram }}</td>
+    </tr>
+    <tr>
+      <td><b>DISK:</b> &nbsp;</td>
+      <td>{{ device.disk }}</td>
+    </tr>
+    <tr ng-if="device.public_ip">
+      <td><b>Public IP:</b> &nbsp;</td>
+    <td>{{ device.public_ip }}</td>
+  </tr>
+  <tr>
+    <td><b>Private IP</b> &nbsp;</td>
+    <td>{{ device.private_ip }}</td>
+  </tr>
+  </table>
+  <br/>
+  <h4>Description</h4>
+  <p>{{device.description}}</p>
+  <br/><br>
+
+  <span ng-if="device.cpus">
+
+    <h4>CPUs</h4>
+    <table class="table table-striped">
+      <thead>
+        <th>No.</th>
+        <th>MODEL</th>
+        <th>SPEED</th>
+        <th>IDLE</th>
+        <th>IRQ</th>
+        <th>NICE</th>
+        <th>SYS</th>
+        <th>USER</th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="cpu in device.cpus">
+        <td>1</td>
+        <td>{{ cpu.model }}</td>
+        <td>{{ cpu.speed }}</td>
+        <td>{{ cpu.times.idle }}</td>
+        <td>{{ cpu.times.irq }}</td>
+        <td>{{ cpu.times.nice }}</td>
+        <td>{{ cpu.times.sys }}</td>
+        <td>{{ cpu.times.user }}</td>
+      </tr>
+    </tbody>
+    </table>
+
+  </span>
+
+</div>
